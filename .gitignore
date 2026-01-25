@@ -1,0 +1,15 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Databases
+instance/
+*.db
+
+# Environment & Secrets
+.env
+.flaskenv
+
+# OS files
+.DS_Store
