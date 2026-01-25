@@ -1,0 +1,21 @@
+# Web Framework
+Flask==3.0.2
+Werkzeug==3.0.1
+
+# Database & Models
+Flask-SQLAlchemy==3.1.1
+SQLAlchemy==2.0.27
+
+# Forms & Security
+Flask-WTF==1.2.1
+WTForms==3.1.2
+email-validator==2.1.0.post1
+
+# Environment Variables
+python-dotenv==1.0.1
+
+# Production Server
+gunicorn==21.2.0
+
+# Optional: SQLite is built-in, but if you move to Postgres later:
+# psycopg2-binary==2.9.9
