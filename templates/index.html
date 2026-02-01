@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>N-Sided Polygon Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>N-Sided Polygon Generator</h1>
+
+    <div class="theory-box">
+        <strong>Theory:</strong>
+        A regular polygon has equal sides and angles.
+        As the number of sides increases, the polygon approaches a circle.
+    </div>
+
+    <div class="layout">
+        <div class="controls">
+            <label for="sides">Number of sides (n)</label>
+            <input type="range" id="sides" min="3" max="20" value="5" oninput="updateSides()">
+            <div class="side-value">n = <span id="sideValue">5</span></div>
+
+            <p class="caption">
+                Move the slider to change the number of sides.
+            </p>
+        </div>
+
+        <canvas id="polygonCanvas"></canvas>
+
+        <div class="results">
+            <h2>Properties</h2>
+            <p><strong>Interior Angle:</strong> <span id="interior"></span>°</p>
+            <p><strong>Exterior Angle:</strong> <span id="exterior"></span>°</p>
+            <p><strong>Perimeter:</strong> <span id="perimeter"></span></p>
+            <p><strong>Area:</strong> <span id="area"></span></p>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/polygon.js') }}"></script>
+</body>
+</html>

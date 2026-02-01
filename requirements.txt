@@ -2,12 +2,6 @@
 Flask==3.0.2
 Werkzeug==3.0.1
 
-# Database & Models
-Flask-SQLAlchemy==3.1.1
-
-# Forms & Security
-Flask-WTF==1.2.1
-email-validator==2.1.0.post1
 
 # Environment Variables
 python-dotenv==1.0.1

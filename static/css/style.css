@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f4f6f8;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 5px 0;
+    color: #1f2933;
+}
+
+.theory-box {
+    background: #eef2ff;
+    border-left: 4px solid #2563eb;
+    padding: 8px 12px;
+    margin: 8px auto 12px;
+    max-width: 700px;
+    font-size: 14px;
+}
+
+.layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls, .results {
+    width: 25%;
+    font-size: 15px;
+}
+
+.controls label {
+    font-weight: bold;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 8px 0;
+}
+
+.side-value {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.caption {
+    font-size: 13px;
+    color: #555;
+}
+
+canvas {
+    background: #ffffff;
+    border: 2px solid #ddd;
+}
+
+.results h2 {
+    margin-bottom: 5px;
+}
