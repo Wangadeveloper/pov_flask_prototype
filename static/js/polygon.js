@@ -5,19 +5,37 @@ let currentSides = 5;
 let targetSides = 5;
 let radius = 100;
 
+// Responsive canvas
 function resizeCanvas() {
-    const size = Math.min(window.innerHeight * 0.45, 340);
+    const maxSize = Math.min(window.innerWidth, window.innerHeight) * 0.6;
+    const size = Math.max(220, Math.min(maxSize, 360));
     canvas.width = size;
     canvas.height = size;
 }
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-function updateSides() {
-    targetSides = parseInt(document.getElementById("sides").value);
-    document.getElementById("sideValue").textContent = targetSides;
+// Input modes
+function setMode(mode) {
+    document.getElementById("sliderControl").classList.toggle("hidden", mode !== "slider");
+    document.getElementById("numberControl").classList.toggle("hidden", mode !== "number");
 }
 
+function updateFromSlider() {
+    targetSides = parseInt(document.getElementById("sidesSlider").value);
+    document.getElementById("sideValue").textContent = targetSides;
+    document.getElementById("sidesInput").value = targetSides;
+}
+
+function updateFromInput() {
+    let val = parseInt(document.getElementById("sidesInput").value);
+    if (val < 3 || isNaN(val)) return;
+    targetSides = val;
+    document.getElementById("sidesSlider").value = val;
+    document.getElementById("sideValue").textContent = val;
+}
+
+// Animation loop
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -31,12 +49,12 @@ function animate() {
     const cy = canvas.height / 2;
 
     const points = [];
-
     for (let i = 0; i < n; i++) {
         const angle = (2 * Math.PI * i) / n;
-        const x = cx + radius * Math.cos(angle);
-        const y = cy + radius * Math.sin(angle);
-        points.push({ x, y });
+        points.push({
+            x: cx + radius * Math.cos(angle),
+            y: cy + radius * Math.sin(angle)
+        });
     }
 
     drawPolygon(points);
@@ -48,12 +66,9 @@ function animate() {
 function drawPolygon(points) {
     ctx.beginPath();
     ctx.moveTo(points[0].x, points[0].y);
-
-    for (let i = 1; i < points.length; i++) {
-        ctx.lineTo(points[i].x, points[i].y);
-    }
-
+    points.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
     ctx.closePath();
+
     ctx.strokeStyle = "#111827";
     ctx.lineWidth = 2;
     ctx.stroke();
@@ -61,15 +76,15 @@ function drawPolygon(points) {
     // Angle markers
     points.forEach(p => {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 12, 0, 2 * Math.PI);
-        ctx.strokeStyle = "rgba(37, 99, 235, 0.25)";
+        ctx.arc(p.x, p.y, 12, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(37,99,235,0.25)";
         ctx.stroke();
     });
 
     // Vertices
     points.forEach(p => {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 3, 0, 2 * Math.PI);
+        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
         ctx.fillStyle = "#2563eb";
         ctx.fill();
     });

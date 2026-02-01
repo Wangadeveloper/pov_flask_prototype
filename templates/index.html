@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>N-Sided Polygon Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -12,25 +13,50 @@
 
     <div class="theory-box">
         <strong>Theory:</strong>
-        A regular polygon has equal sides and angles.
+        A regular polygon has equal sides and equal angles.
         As the number of sides increases, the polygon approaches a circle.
     </div>
 
     <div class="layout">
+        <!-- Controls -->
         <div class="controls">
-            <label for="sides">Number of sides (n)</label>
-            <input type="range" id="sides" min="3" max="20" value="5" oninput="updateSides()">
-            <div class="side-value">n = <span id="sideValue">5</span></div>
+            <h3>Input Method</h3>
+
+            <div class="toggle">
+                <label>
+                    <input type="radio" name="mode" checked onclick="setMode('slider')">
+                    Slider
+                </label>
+                <label>
+                    <input type="radio" name="mode" onclick="setMode('number')">
+                    Number Input
+                </label>
+            </div>
+
+            <div id="sliderControl">
+                <label>Number of sides (n)</label>
+                <input type="range" id="sidesSlider" min="3" max="30" value="5" oninput="updateFromSlider()">
+                <div class="side-value">n = <span id="sideValue">5</span></div>
+            </div>
+
+            <div id="numberControl" class="hidden">
+                <label>Enter number of sides (n ≥ 3)</label>
+                <input type="number" id="sidesInput" min="3" value="5" oninput="updateFromInput()">
+            </div>
 
             <p class="caption">
-                Move the slider to change the number of sides.
+                Choose how you want to control the number of sides.
             </p>
         </div>
 
-        <canvas id="polygonCanvas"></canvas>
+        <!-- Canvas -->
+        <div class="canvas-wrapper">
+            <canvas id="polygonCanvas"></canvas>
+        </div>
 
+        <!-- Results -->
         <div class="results">
-            <h2>Properties</h2>
+            <h3>Polygon Properties</h3>
             <p><strong>Interior Angle:</strong> <span id="interior"></span>°</p>
             <p><strong>Exterior Angle:</strong> <span id="exterior"></span>°</p>
             <p><strong>Perimeter:</strong> <span id="perimeter"></span></p>
